@@ -48,7 +48,9 @@ describe('TM02 Login', () => {
         Cypress.env('LANG') == 'en' ? '' : '/' + Cypress.env('LANG')
       }/?view=captive&task=select"]`
     ).click()
-    cy.get('img[alt="Verification code"]').should('be.visible')
+    cy.get(
+      'img[src="https://account.limesurvey.org/media/plg_multifactorauth_totp/images/totp.svg"]'
+    ).should('be.visible')
     cy.wait(1000)
     cy.screenshot()
   })
@@ -62,7 +64,9 @@ describe('TM02 Login', () => {
         Cypress.env('LANG') == 'en' ? '' : '/' + Cypress.env('LANG')
       }/?view=captive&task=select"]`
     ).click()
-    cy.get('img[alt="Backup Codes"]').click()
+    cy.get(
+      'img[src="https://account.limesurvey.org/media/com_users/images/emergency.svg"]'
+    ).click()
     cy.get('#users-mfa-code').should('be.visible')
     cy.wait(1000)
     cy.screenshot()

@@ -32,13 +32,32 @@ module.exports = defineConfig({
         }
       })
 
+      on('before:browser:launch', (browser, launchOptions) => {
+        launchOptions.args.push('--force-color-profile=srgb')
+        launchOptions.args.push('--disable-low-res-tiling')
+        launchOptions.args.push('--disable-smooth-scrolling')
+
+        return launchOptions
+      })
+
       on('task', {
-        imgToPdf(path) {
+        log(message) {
+          console.log(message)
+          return null
+        },
+      })
+
+      on('task', {
+        imgToPdf({ path, rotate }) {
           try {
-            const doc = new PDFDocument({ size: [1920, 1080] })
+            const width = rotate ? 1080 : 1920
+            const height = rotate ? 1920 : 1080
+            const fitX = rotate ? 864 : 1536
+            const fitY = rotate ? 1536 : 864
+            const doc = new PDFDocument({ size: [width, height] })
             const stream = doc.pipe(blobStream())
             doc.image(path, {
-              fit: [1536, 864],
+              fit: [fitX, fitY],
               align: 'center',
               margins: {
                 top: 0,

@@ -24,15 +24,21 @@ Cypress.on('uncaught:exception', () => {
 })
 
 let screenshotPath
+let rotate
 
 Cypress.Screenshot.defaults({
   onAfterScreenshot($el, props) {
     screenshotPath = props.path
+    if (props.dimensions.width < props.dimensions.height) {
+      rotate = true
+    } else {
+      rotate = false
+    }
   },
 })
 
 afterEach(() => {
-  cy.task('imgToPdf', screenshotPath).then((result) => {
+  cy.task('imgToPdf', { path: screenshotPath, rotate }).then((result) => {
     console.log(result)
   })
   cy.wait(1000)
