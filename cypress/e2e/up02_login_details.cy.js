@@ -6,7 +6,7 @@ describe('UP02 Login details', () => {
     cy.get('.column-edit a').eq(5).click()
     cy.get('#modal').should('be.visible')
     cy.wait(1000)
-    cy.screenshot({ capture: 'viewport' })
+    cy.screenshot({ capture: 'viewport', blackout: ['.email1'] })
   })
 
   it('UP02.3 Edit password', function () {
@@ -16,7 +16,7 @@ describe('UP02 Login details', () => {
     cy.get('.column-edit a').eq(6).click()
     cy.get('#modal').should('be.visible')
     cy.wait(1000)
-    cy.screenshot({ capture: 'viewport' })
+    cy.screenshot({ capture: 'viewport', blackout: ['.email1'] })
   })
 
   it('UP02.4 Edit email', function () {
@@ -26,7 +26,7 @@ describe('UP02 Login details', () => {
     cy.get('.column-edit a').eq(7).click()
     cy.get('#modal').should('be.visible')
     cy.wait(1000)
-    cy.screenshot({ capture: 'viewport' })
+    cy.screenshot({ capture: 'viewport', blackout: ['.email1'] })
   })
 
   it('UP02.5 Edit 2FA', function () {

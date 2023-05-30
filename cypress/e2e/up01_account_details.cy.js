@@ -4,7 +4,7 @@ describe('UP01 Account details', () => {
     cy.visit(Cypress.env('LANG'))
     cy.login(Cypress.env('USER2'), Cypress.env('PASS2'))
     cy.wait(1000)
-    cy.screenshot()
+    cy.screenshot({ blackout: ['.email1'] })
   })
 
   it('UP01.2 Account details (new user)', function () {
@@ -12,7 +12,7 @@ describe('UP01 Account details', () => {
     cy.visit(Cypress.env('LANG'))
     cy.login(Cypress.env('USER3'), Cypress.env('PASS3'))
     cy.wait(1000)
-    cy.screenshot()
+    cy.screenshot({ blackout: ['.selector__copyHashToClipboard', '.email1'] })
   })
 
   it('UP01.3 Edit survey site URL', function () {
@@ -32,7 +32,10 @@ describe('UP01 Account details', () => {
     cy.get('#application a').click()
     cy.get('#jform_subdomain').should('be.visible')
     cy.wait(1000)
-    cy.screenshot({ capture: 'viewport' })
+    cy.screenshot({
+      capture: 'viewport',
+      blackout: ['.selector__copyHashToClipboard', '.email1'],
+    })
   })
 
   it('UP01.5 Edit domain alias without expert package', function () {
@@ -52,7 +55,7 @@ describe('UP01 Account details', () => {
     cy.get('.column-edit a').eq(2).click()
     cy.get('#installationform').should('be.visible')
     cy.wait(1000)
-    cy.screenshot({ capture: 'viewport' })
+    cy.screenshot({ capture: 'viewport', blackout: ['.email1'] })
   })
 
   it('UP01.7 Edit response reminder', function () {
@@ -62,20 +65,20 @@ describe('UP01 Account details', () => {
     cy.get('.column-edit a').eq(3).click()
     cy.get('#installationform').should('be.visible')
     cy.wait(1000)
-    cy.screenshot({ capture: 'viewport' })
+    cy.screenshot({ capture: 'viewport', blackout: ['.email1'] })
   })
 
-  it('UP01.8 Reset admin password', function () {
+  it.only('UP01.8 Reset admin password', function () {
     cy.viewport(1220, 1100)
     cy.visit(Cypress.env('LANG'))
     cy.login(Cypress.env('USER2'), Cypress.env('PASS2'))
     cy.get('.column-edit a').eq(4).click()
-    cy.get('#modal').should('be.visible')
+    cy.get('.uk-modal-body').should('be.visible')
     cy.wait(1000)
-    cy.screenshot({ capture: 'viewport' })
+    cy.screenshot({ capture: 'viewport', blackout: ['.email1'] })
   })
 
-  it.only('UP01.9 Delete survey site', function () {
+  it('UP01.9 Delete survey site', function () {
     cy.viewport(1220, 1100)
     cy.visit(Cypress.env('LANG'))
     cy.login(Cypress.env('USER2'), Cypress.env('PASS2'))
