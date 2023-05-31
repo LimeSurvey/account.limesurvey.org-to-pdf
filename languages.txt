@@ -7,7 +7,7 @@ cs
 hi
 id
 it
-jp
+ja
 ko
 nl
 sv
