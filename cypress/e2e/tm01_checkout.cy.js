@@ -119,7 +119,7 @@ describe('TM01 Checkout', () => {
     cy.screenshot()
   })
 
-  it.only('TM01.2 Quotes', function () {
+  it('TM01.2 Quotes', function () {
     cy.viewport(1220, 1100)
     cy.visit(Cypress.env('LANG'))
     cy.login(Cypress.env('USER2'), Cypress.env('PASS2'))
@@ -133,5 +133,14 @@ describe('TM01 Checkout', () => {
     cy.get('[name="ctl_NBILL_CORE_company_name"]').should('be.visible')
     cy.wait(1000)
     cy.screenshot({ blackout: ['input[type="email"]'] })
+  })
+
+  it('TM01.3 Thank you', function () {
+    cy.viewport(1220, 1100)
+    cy.visit(Cypress.env('LANG'))
+    cy.login(Cypress.env('USER2'), Cypress.env('PASS2'))
+    cy.visit(`${Cypress.env('LANG')}/quotation_landing`)
+    cy.wait(1000)
+    cy.screenshot()
   })
 })

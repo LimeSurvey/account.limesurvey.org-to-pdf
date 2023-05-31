@@ -68,7 +68,7 @@ describe('UP01 Account details', () => {
     cy.screenshot({ capture: 'viewport', blackout: ['.email1'] })
   })
 
-  it.only('UP01.8 Reset admin password', function () {
+  it('UP01.8 Reset admin password', function () {
     cy.viewport(1220, 1100)
     cy.visit(Cypress.env('LANG'))
     cy.login(Cypress.env('USER2'), Cypress.env('PASS2'))
