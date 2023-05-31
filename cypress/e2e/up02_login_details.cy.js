@@ -25,8 +25,12 @@ describe('UP02 Login details', () => {
     cy.login(Cypress.env('USER2'), Cypress.env('PASS2'))
     cy.get('.column-edit a').eq(7).click()
     cy.get('#modal').should('be.visible')
+    cy.get('.uk-modal-dialog').invoke('css', 'position', 'absolute')
     cy.wait(1000)
-    cy.screenshot({ capture: 'viewport', blackout: ['.email1'] })
+    cy.screenshot({
+      capture: 'viewport',
+      blackout: ['.dd.email1', 'input[type="email"]'],
+    })
   })
 
   it('UP02.5 Edit 2FA', function () {
